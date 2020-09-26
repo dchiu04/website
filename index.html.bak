@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Lab 1</title>
+	<meta charset="utf-8"/>
+	<style>
+	body{
+	font-family: "Calibri", sans-serif;
+		background-color:#fdffdb;
+	}
+	li{
+	padding-bottom: 20px;
+	}
+	ul{
+	font-weight: bold;
+	}
+
+	</style>
+</head>
+<body>
+	<figure>
+	<img src="https://dummyimage.com/600x400/f2a9a9/ffffff&text=Debby+Chiu" title="name"></a>
+	</figure>
+	<p>
+	Hello, my name is Debby Chiu. I was born in Canada on November 17th, 1995.<br>
+	I decided to pursue a career in computing because I was always intrigued by technology and my uncle also graduated from CST.<br>	
+	I like to play games, listen to music, and hang out with friends. My favorite programming languages are Java and Python because I first learned<br>
+	programming through Java, and Python - to me - is a superior Java in terms of how much more convenient everything is thus far.<br>
+	<br>
+
+	</p>
+	
+	<div class="column1">
+	<i><b>Courses:</b></i>
+	<ul style="list-style-type:none">
+	<a href="COMP4537/COMP4537.html"><li>COMP 4537 - Internet Software Architecture</li></a>
+	<li>BLAW 3600 - Computers and the Law</li>
+	<li>COMP 4958 - Concurrent Programming</li>
+	<li>COMP 4800 - Projects Practicum 2</li>
+	<li>COMP 4959 - Selected Appl Prog Paradigms</li>
+	</ul>
+	</div>
+	<p style="color:rgb(10, 255, 23);">I am blue</p>
+	<script>
+	var x = 0;
+	var y = 1;
+	var z = x + y;
+	console.log(z);
+	</script>
+</body>
+</html>

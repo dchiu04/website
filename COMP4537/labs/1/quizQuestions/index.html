@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>COMP 4537 - Quiz Questions</title>
+	<meta charset="utf-8"/>
+	<style>
+	
+	body{
+		font-family: "Calibri", sans-serif;
+		background-color:#fdffdb;
+	}
+	</style>
+</head>
+<body>
+	
+	<div class="column1">
+		<i><b>Quiz Questions:</b></i>
+		<ol>
+		<li>What is the most correct way to name variables in Javascript?</li>
+			<form action="">
+			<input type="radio" id="1a" name="1" value="1a">
+			<label for="1a">a) var newsPaper = getElementById("newspaperArticle");</label><br>
+			<input type="radio" id="1b" name="1" value="1b">
+			<label for="1b">b) var Newspaper = getElementById("newspaperArticle");</label><br>
+			<input type="radio" id="1c" name="1" value="1c">
+			<label for="1c">c) var newsPaper = getElementById("newspaperarticle");</label><br>
+			<input type="radio" id="1d" name="1" value="1d">
+			<label for="1d">d) var NewsPaper = getElementById("newspaperarticle");</label><br>
+			<input type="radio" id="1e" name="1" value="1e">
+			<label for="1e">e) var NEWSPAPER = getElementById("newspaperArticle");</label><br><br>
+			</form>
+
+		<li>What is the output?</li>
+			<p>
+			var x = 10;<br>
+			var y = 20;<br>
+			var z = 50;<br>
+			var xyz = (z - x) + x * y;<br><br>
+			console.log(xyz);
+			</p>
+			<input type="radio" id="2a" name="2" value="2a">
+			<label for="2a">a) 180</label><br>
+			<input type="radio" id="2b" name="2" value="2b">
+			<label for="2b">b) 200</label><br>
+			<input type="radio" id="2c" name="2" value="2c">
+			<label for="2c">c) 240</label><br>
+			<input type="radio" id="2d" name="2" value="2d">
+			<label for="2d">d) 220</label><br>
+			<input type="radio" id="2e" name="2" value="2e">
+			<label for="2e">e) 230</label><br><br>
+			
+		<li>What is the output?</li>
+		<p>
+		var x = 1 + 2 % 2 == 1 ? "Odd" : "Even";<br>
+		var y = (14 >= 21) ? "Adult" : "Jail";<br>
+		var z = x + y;<br><br>
+		console.log(z);
+		</p>
+		<input type="radio" id="3a" name="3" value="3a">
+			<label for="3a">a) EvenAdult</label><br>
+			<input type="radio" id="3b" name="3" value="3b">
+			<label for="3b">b) OddAdult</label><br>
+			<input type="radio" id="3c" name="3" value="3c">
+			<label for="3c">c) EvenJail</label><br>
+			<input type="radio" id="3d" name="3" value="3d">
+			<label for="3d">d) OddJail</label><br>
+			<input type="radio" id="3e" name="3" value="3e">
+			<label for="3e">e) null</label><br><br>
+		
+		<li>Given the following code, what is the output?</li>
+		<p>
+		var a = 10;<br>
+		var b = 5;<br><br>
+		function theSmallest(a, b) {<pre>
+    var x;
+    a < b ? x = a : x = b;
+    return x;
+}
+		</pre>
+		var z = "The smaller number is " + theSmallest(a, b);<br>
+		console.log(z);
+		</p>
+		<input type="radio" id="4a" name="4" value="4a">
+			<label for="4a">a) The smaller number is null</label><br>
+			<input type="radio" id="4b" name="4" value="4b">
+			<label for="4b">b) null</label><br>
+			<input type="radio" id="4c" name="4" value="4c">
+			<label for="4c">c) The smaller number is 10</label><br>
+			<input type="radio" id="4d" name="4" value="4d">
+			<label for="4d">d) The smaller number is theSmallest(10, 5)</label><br>
+			<input type="radio" id="4e" name="4" value="4e">
+			<label for="4e">e) The smaller number is 5</label><br><br>
+		
+		<li>What is the output?</li>
+		<p>
+		function minusX(a) {
+		<pre>
+    return function(b) {
+	    return(a - b);
+    };
+};
+
+var z = minusX(100);
+console.log(z(10));
+	</pre>
+		</p>
+		<input type="radio" id="5a" name="5" value="5a">
+			<label for="5a">a) -90</label><br>
+			<input type="radio" id="5b" name="5" value="5b">
+			<label for="5b">b) 90</label><br>
+			<input type="radio" id="5c" name="5" value="5c">
+			<label for="5c">c) 1000</label><br>
+			<input type="radio" id="5d" name="5" value="5d">
+			<label for="5d">d) 200</label><br>
+			<input type="radio" id="5e" name="5" value="5e">
+			<label for="5e">e) 100</label><br><br>
+		</ol>
+	</div>
+</body>
+</html>
