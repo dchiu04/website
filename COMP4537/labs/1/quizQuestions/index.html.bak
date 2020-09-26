@@ -70,7 +70,7 @@
 		<li>Given the following code, what is the output?</li>
 		<p>
 		var a = 10;<br>
-		var b = 5;<br>
+		var b = 5;<br><br>
 		function theSmallest(a, b) {<pre>
     var x;
     a < b ? x = a : x = b;
