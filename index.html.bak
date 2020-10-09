@@ -17,7 +17,7 @@
 	<br>
 	</p>
 	
-	<div class="column1">
+	<div>
 	<i><b>Courses:</b></i>
 	<ul>
 	<a href="COMP4537/COMP4537.html"><li>COMP 4537 - Internet Software Architecture</li></a>
@@ -27,5 +27,18 @@
 	<li>COMP 4959 - Selected Appl Prog Paradigms</li>
 	</ul>
 	</div>
+	<p id="p">
+	</p>
+	<script>
+	let obj = { a: 1, b: 2, c: 3};
+	let arr = ["a", "b", "c"];
+	let ar = [1, 2, 3];
+	console.log(typeof ar);
+	console.log(obj[arr["c"]]);
+	console.log(obj[arr[[2]]);
+	function Person(firstname, lastname) {
+		this.firstname = firstname;
+	}
+	</script>
 </body>
 </html>
