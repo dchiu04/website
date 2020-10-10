@@ -3,32 +3,27 @@
 <head>
 	<title>COMP 4537 - Quiz Questions</title>
 	<meta charset="utf-8"/>
-	<style>
-	
-	body{
-		font-family: "Calibri", sans-serif;
-		background-color:#fdffdb;
-	}
-	</style>
+	<link rel="stylesheet" href="../../../../CSS/styling.css">
 </head>
 <body>
 	
-	<div class="column1">
+	<div>
 		<i><b>Quiz Questions:</b></i>
 		<ol>
 		<li>What is the most correct way to name variables in Javascript?</li>
-			<form action="">
-			<input type="radio" id="1a" name="1" value="1a">
-			<label for="1a">a) var newsPaper = getElementById("newspaperArticle");</label><br>
-			<input type="radio" id="1b" name="1" value="1b">
-			<label for="1b">b) var Newspaper = getElementById("newspaperArticle");</label><br>
-			<input type="radio" id="1c" name="1" value="1c">
-			<label for="1c">c) var newsPaper = getElementById("newspaperarticle");</label><br>
-			<input type="radio" id="1d" name="1" value="1d">
-			<label for="1d">d) var NewsPaper = getElementById("newspaperarticle");</label><br>
-			<input type="radio" id="1e" name="1" value="1e">
-			<label for="1e">e) var NEWSPAPER = getElementById("newspaperArticle");</label><br><br>
-			</form>
+			<p>
+			var person = {
+				firstName: "John",
+  lastName : "Doe",
+  id     : 5566,
+  fullName : function() {
+    return this.firstName + " " + this.lastName;
+  }
+};
+</p>
+			
+			
+		
 
 		<li>What is the output?</li>
 			<p>

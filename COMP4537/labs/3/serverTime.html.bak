@@ -1,6 +1,8 @@
 <html>
     <head>
+	<title>Lab 3</title>
 	<script src="server.js"></script>
+	<link rel="stylesheet" href="../../../CSS/styling.css">
     </head>
 
     <body>

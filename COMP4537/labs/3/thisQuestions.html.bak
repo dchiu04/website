@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>COMP 4537 - Lab 3</title>
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" href="../../../CSS/styling.css">
+</head>
+<body>
+	
+	<div>
+		<i><b>Quiz Questions:</b></i>
+		<ol>
+		<li>How would you display all of the information inside person?</li>
+		<pre>
+var person = {
+	firstName: "Joshua",
+	lastName : "Bright",
+	role     : "Black Fang",
+	id       : "XIII"
+	credentials : ?
+};
+		</pre>
+			
+			<form action="">
+			<input type="radio" id="1a" name="1" value="1a">
+			<label for="1a">a) credentials : function() { <br>
+				return this.firstName + " " + this.lastName + " " + " " + this.role + " " + this.id;<br>
+				}</label><br>
+			<input type="radio" id="1b" name="1" value="1b">
+			<label for="1b">b) credentials : function() { <br>
+				return person.firstName + " " + person.lastName + " " + person.role + " " + person.id; <br>
+				}</label><br>
+			<input type="radio" id="1c" name="1" value="1c">
+			<label for="1c">c) credentials : function() { <br>
+				return firstName + " " + lastName + " " + role + " " + id;<br>
+				}</label><br>
+			<input type="radio" id="1d" name="1" value="1d">
+			<label for="1d">d) Only a and c;</label><br>
+			<input type="radio" id="1e" name="1" value="1e">
+			<label for="1e">e) All of the above</label><br><br>
+			</form>
+
+		<li>How would you change a button's text to pink when you click on it?</li>
+			<input type="radio" id="2a" name="2" value="2a">
+			<label for="2a">a) button onclick="this.color='pink'"</label><br>
+			<input type="radio" id="2b" name="2" value="2b">
+			<label for="2b">b) button onclick="style.color="pink""</label><br>
+			<input type="radio" id="2c" name="2" value="2c">
+			<label for="2c">c) button onclick="this.style.color='pink'"</label><br>
+			<input type="radio" id="2d" name="2" value="2d">
+			<label for="2d">d) Only b and c</label><br>
+			<input type="radio" id="2e" name="2" value="2e">
+			<label for="2e">e) All of the above</label><br><br>
+			
+		<li>What is the output?</li>
+		<pre>
+document.getElementById("demo").innerHTML = get();
+function get() {
+	return this;
+}
+</pre>
+		<input type="radio" id="3a" name="3" value="3a">
+			<label for="3a">a) undefined</label><br>
+			<input type="radio" id="3b" name="3" value="3b">
+			<label for="3b">b) []</label><br>
+			<input type="radio" id="3c" name="3" value="3c">
+			<label for="3c">c) [object Object]</label><br>
+			<input type="radio" id="3d" name="3" value="3d">
+			<label for="3d">d) [object Window]</label><br>
+			<input type="radio" id="3e" name="3" value="3e">
+			<label for="3e">e) null</label><br><br>
+		
+		<li>In which instance does the <i>this</i> key word refer to the owner object?</li>
+		<input type="radio" id="4a" name="4" value="4a">
+			<label for="4a">a) Inside a function/method</label><br>
+			<input type="radio" id="4b" name="4" value="4b">
+			<label for="4b">b) By itself</label><br>
+			<input type="radio" id="4c" name="4" value="4c">
+			<label for="4c">c) Inside a function, in strict mode </label><br>
+			<input type="radio" id="4d" name="4" value="4d">
+			<label for="4d">d) Inside an event</label><br>
+			<input type="radio" id="4e" name="4" value="4e">
+			<label for="4e">e) None of the above</label><br><br>
+		
+		<li>In the example below, what object does <i>this</i> represent?</li>
+		<pre>
+let vehicle = {
+    name    : "Tesla"
+    model   : "3"
+    myFunction() {
+		return this;
+    }
+};
+		</pre>
+		
+		<input type="radio" id="5a" name="5" value="5a">
+			<label for="5a">a)  Vehicle</label><br>
+			<input type="radio" id="5b" name="5" value="5b">
+			<label for="5b">b) It doesn't represent anything</label><br>
+			<input type="radio" id="5c" name="5" value="5c">
+			<label for="5c">c) Name</label><br>
+			<input type="radio" id="5d" name="5" value="5d">
+			<label for="5d">d) Model</label><br>
+			<input type="radio" id="5e" name="5" value="5e">
+			<label for="5e">e) None of the above</label><br><br>
+		</ol>
+	</div>
+</body>
+</html>

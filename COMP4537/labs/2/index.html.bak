@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Lab 2</title>
+	<title>Lab 3</title>
 	<meta charset="utf-8"/>
-	<link rel="stylesheet" href="../../../../CSS/styling.css">
+	<link rel="stylesheet" href="../../../CSS/styling.css">
 </head>
 <body>
 <script src="index.js">
