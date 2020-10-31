@@ -109,13 +109,18 @@ function generateTiles(row, col, num, len) {
 	return newArr;
 }
 
-//Shows user the summary page
+//shows user the summary page after confirmation
 function terminate() {
 	var r = confirm("Are you sure you want to terminate the game?");
 	if(r) {
 		//send user to summary page
 		location.href = "summary.html";
 	}
+}
+
+//forces termination of the game
+function autoTerminate() {
+	location.href = "summary.html";
 }
 
 //removes everything inside of grid
@@ -142,6 +147,13 @@ function setCorrectTiles(row, col, newArr) {
 	}
 }
 
+//plays sound effect when refreshing grid
+function playAudio() {
+	let m = document.getElementById("sound");
+	m.play();
+	m.muted = false;
+}
+
 //stores all of the game logic
 function startGame(row, col, score) {
 	//update score
@@ -151,7 +163,7 @@ function startGame(row, col, score) {
 	
 	//end game
 	if(score < 0) {
-		terminate();
+		autoTerminate();
 		return;
 	}
 	
@@ -168,7 +180,7 @@ function startGame(row, col, score) {
 	
 	//repeat first round
 	if(clickedOnWrongTile && row == 0 && col == 0) {
-		
+		playAudio();
 		//removing grid not working
 		removeGrid();
 		
@@ -185,7 +197,8 @@ function startGame(row, col, score) {
 	
 	//go back a round, row or col needs to go back to the previous one
 	if(clickedOnWrongTile && (row > 0 || col > 0)) {
-		//REMOVE GRID ELEMENTS
+		
+		playAudio();
 		removeGrid();
 		
 		//remove a row
@@ -224,6 +237,7 @@ function startGame(row, col, score) {
 	
 	//got everything correct, move on to next stage
 	if (truesRemaining == 0 && !clickedOnWrongTile) {
+		playAudio();
 		//remove grid elements
 		removeGrid();
 		
@@ -286,3 +300,7 @@ function startGame(row, col, score) {
 		}		
 	}
 }
+/** bugs:
+- terminate button doesnt work during the middle of a game
+-
+*/
