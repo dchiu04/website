@@ -31,10 +31,7 @@ function genLeaderBoard() {
 		body: JSON.stringify(data) // body data type must match "Content-Type" header
 		}).then(response => response.text()).then(data => {
 			document.getElementById("user").innerHTML = name + " " + score;
-			fetch("https://wicked-spider-23736.herokuapp.com/get_leaderboard", {
-				mode: 'no-cors',
-				credentials: 'omit'
-			})
+			fetch("https://wicked-spider-23736.herokuapp.com/get_leaderboard")
 			.then(response => response.json()).then(data => {console.log(data)}).catch(e => console.log(e))
 		}).catch(e => console.log(e))
 	};
