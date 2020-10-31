@@ -14,8 +14,9 @@ let num = 2;
 //holds values of each tile (true = correct, false = incorrect)
 let newArr = [];
 
-//determines if the game should increase rows or cols
-let tilesIncreaseBool = true;
+//used to flash the grid
+let copyArr = [];
+
 
 //default 90
 let degrees = 90;
@@ -42,7 +43,7 @@ function generateGrid(row, col, degrees) {
 		}
 	}
 	
-	//rotate grid after 3 seconds
+	//rotate grid after 1 second
 	setTimeout(() => {
 		// IE9
 		document.getElementById("grid").style.msTransform = 'rotate('+degrees+'deg)'; 
@@ -56,9 +57,31 @@ function generateGrid(row, col, degrees) {
 			let childDiv = childDivs[i];
 			childDiv.style.background = "pink";
 		}
-	}, 3000);
+	}, 1000);
 }
 
+//Flashes animation of all correct and incorrect tiles
+function flashGrid(copyArr) {
+	//flashes for 2 seconds
+	setTimeout(() => {
+		console.log("should be flashing");
+		// IE9
+	//	$('#grid').delay(100).fadeOut().fadeIn('slow')
+		// standard	
+		
+		var childDivs = document.getElementById("grid").getElementsByClassName('square');
+		
+		//change color of everything in grid back to pink after rotating
+		for( i = 0; i< copyArr.length; i++ ) {
+			let childDiv = childDivs[i];
+			if (childDiv[i]) {
+				childDiv.style.background = "aqua";
+			} else {
+				childDiv.style.background = "pink";
+			}
+		}
+	}, 1000);
+}
 //determines right/wrong for each tile
 function generateTiles(row, col, num, len) {
 	
@@ -105,7 +128,7 @@ function generateTiles(row, col, num, len) {
 	//change tiles into a 2d array
 	while(tiles.length) 
 		newArr.push(tiles.splice(0, c + 2));
-    
+	
 	return newArr;
 }
 
@@ -141,7 +164,7 @@ function setCorrectTiles(row, col, newArr) {
 				setTimeout(() => {
 					change = document.getElementById(`Row${r}Col${c}`);					
 					change.style.background = "pink";
-				}, 3000);
+				}, 1000);
 			}
 		}
 	}
@@ -171,8 +194,11 @@ function startGame(row, col, score) {
 	if (score == 0 && !clickedOnWrongTile) {
 		//gen new grid
 		generateGrid(row, col, degrees);
+
 		//holds array with true/false's
 		newArr = generateTiles(row, col, num, len);
+
+		copyArr = newArr;
 		
 		//set functionality and color of correct tiles
 		setCorrectTiles(row, col, newArr);
@@ -180,6 +206,7 @@ function startGame(row, col, score) {
 	
 	//repeat first round
 	if(clickedOnWrongTile && row == 0 && col == 0) {
+		//flashGrid();
 		playAudio();
 		//removing grid not working
 		removeGrid();
@@ -189,7 +216,7 @@ function startGame(row, col, score) {
 		
 		//holds array with true/false's
 		newArr = generateTiles(row, col, num, len);
-		tilesIncreaseBool = false;
+		copyArr = newArr;
 		clickedOnWrongTile = false;	
 		//set functionality and color of correct tiles
 		setCorrectTiles(row, col, newArr);
@@ -197,29 +224,19 @@ function startGame(row, col, score) {
 	
 	//go back a round, row or col needs to go back to the previous one
 	if(clickedOnWrongTile && (row > 0 || col > 0)) {
-		
+		//flashGrid();
 		playAudio();
 		removeGrid();
-		
-		//remove a row
-		if (row > col && row >= 1) {
-			row--;
-		
-		//remove a col
-		} else if (col > row && col >= 1) {
-			col --;
-		
-		//remove a row if they're equal and not 0
-		} else if (row == col && row >= 1 && col >= 1){
-			row--;
-		}
 
+		row--;
+		col --;
+		
 		generateGrid(row, col, degrees+90);
 		degrees += 90;
 		
 		//holds array with true/false's
 		newArr = generateTiles(row, col, num, len);
-		tilesIncreaseBool = false;
+		copyArr = newArr;
 		clickedOnWrongTile = false;
 		//set functionality and color of correct tiles
 		setCorrectTiles(row, col, newArr);
@@ -237,33 +254,21 @@ function startGame(row, col, score) {
 	
 	//got everything correct, move on to next stage
 	if (truesRemaining == 0 && !clickedOnWrongTile) {
+	//	flashGrid();
 		playAudio();
+		
 		//remove grid elements
 		removeGrid();
 		
-		//increase cols
-		if (tilesIncreaseBool) {
-			
-			col++;
-			generateGrid(row, col, degrees+90);
-			degrees += 90;
-			
-			//holds array with true/false's
-			newArr = generateTiles(row, col, num, len);
-			tilesIncreaseBool = false;
-			
-		}
-		//increase row
-		else if (!tilesIncreaseBool) {
-			
-			row++;
-			generateGrid(row, col, degrees+90);
-			degrees += 90;
-			
-			//holds array with true/false's
-			newArr = generateTiles(row, col, num, len);
-			tilesIncreaseBool = true;
-		}
+		col++;
+		row++;
+		generateGrid(row, col, degrees+90);
+		degrees += 90;
+		
+		//holds array with true/false's
+		newArr = generateTiles(row, col, num, len);
+		copyArr = newArr;
+
 		//set functionality and color of correct tiles
 		setCorrectTiles(row, col, newArr);
 	}
@@ -300,7 +305,7 @@ function startGame(row, col, score) {
 		}		
 	}
 }
-/** bugs:
-- terminate button doesnt work during the middle of a game
--
+/** to dos:
+- flash animation on whole grid on refresh
+- flash all tiles (correct and falses) after remainingTiles = 0
 */
