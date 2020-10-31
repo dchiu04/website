@@ -5,8 +5,9 @@ function genLeaderBoard() {
 	
 	let name = localStorage.getItem("name");
 
+	
 	//won't let 0 score
-	if(!score || !name) {
+	if(score === undefined || !name ) {
 		location.href="./index.html"
 		return
 	}
