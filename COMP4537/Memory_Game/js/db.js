@@ -13,7 +13,8 @@ function genLeaderBoard() {
 
 	let url = "https://wicked-spider-23736.herokuapp.com/submitScore";
 	let data = {"name":name, "score":score}
-
+	console.log("name: " + name);
+	console.log("score: " + score);
 	// Example POST method implementation:
 	// Default options are marked with *
 	fetch(url, {
