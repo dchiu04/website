@@ -15,8 +15,7 @@ function genLeaderBoard() {
 	let data = {"name":name, "score":score}
 	console.log("name: " + name);
 	console.log("score: " + score);
-	// Example POST method implementation:
-	// Default options are marked with *
+
 	fetch(url, {
 		method: 'POST', // *GET, POST, PUT, DELETE, etc.
 		body: JSON.stringify(data) // body data type must match "Content-Type" header
@@ -27,16 +26,15 @@ function genLeaderBoard() {
 			fetch("https://wicked-spider-23736.herokuapp.com/get_leaderboard")
 			.then(response => response.json())
 			.then(data => { //data is array of leaderboard
-				//console.log(data);
 
+				//convert array of objects into just an array
 				const objectToValuesPolyfill = (data) => {
 					return Object.keys(data).map(key => data[key]);
 				};
 
-				  Object.values = Object.values || objectToValuesPolyfill;
+				Object.values = Object.values || objectToValuesPolyfill;
 
 				var array = Object.values(data);
-				console.log(array[0][1].name);
 
 				let board = document.getElementById("board");
 
