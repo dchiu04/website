@@ -15,7 +15,7 @@
 	<a href="labs/3/thisQuestions.html"><li>Lab 3 - intro to Node JS, AJAX: thisQuestions</li></a>
 	<li>Lab 4 - </li>
 	<li>Lab 5 - </li>
-	<a href="Memory_Game/index.html"><li>Memory Game</li></a>
+	<a href="Memory Game/index.html"><li>Memory Game</li></a>
 	</ul>
 	</div>
     <button onclick="location.href='../index.html'" type="button">Back</button>
