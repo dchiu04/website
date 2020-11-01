@@ -14,9 +14,6 @@ let num = 2;
 //holds values of each tile (true = correct, false = incorrect)
 let newArr = [];
 
-//used to flash the grid
-let copyArr = [];
-
 //default 90
 let degrees = 90;
 
@@ -193,7 +190,6 @@ function startGame(row, col, score, num) {
 
 		//set functionality and color of correct tiles
         num = setCorrectTiles(row, col, newArr);
-        copyArr = newArr;
     }
 
     //count the number of correct tiles left unclicked
@@ -262,7 +258,6 @@ function startGame(row, col, score, num) {
 
 	//got everything correct, move on to next stage
 	if (truesRemaining == 0 && !clickedOnWrongTile && num == 0) {
-       // flashGrid(row, col, copyArr);
 		playRefreshAudio();
         removeGrid();
         
