@@ -17,15 +17,17 @@ let newArr = [];
 //used to flash the grid
 let copyArr = [];
 
-
 //default 90
 let degrees = 90;
 
 //determines next round (increase/decrease)
 let clickedOnWrongTile = false;
 
+//determines if the game should increase rows or cols
+let tilesIncreaseBool = true;
+
 //start game when document loads
-document.body.onload = startGame(row, col, score);
+document.body.onload = startGame(row, col, score, num);
 
 //Generates a visual grid
 function generateGrid(row, col, degrees) {
@@ -60,29 +62,7 @@ function generateGrid(row, col, degrees) {
 	}, 1000);
 }
 
-//Flashes animation of all correct and incorrect tiles
-function flashGrid(copyArr) {
-	//flashes for 2 seconds
-	setTimeout(() => {
-		console.log("should be flashing");
-		// IE9
-	//	$('#grid').delay(100).fadeOut().fadeIn('slow')
-		// standard	
-		
-		var childDivs = document.getElementById("grid").getElementsByClassName('square');
-		
-		//change color of everything in grid back to pink after rotating
-		for( i = 0; i< copyArr.length; i++ ) {
-			let childDiv = childDivs[i];
-			if (childDiv[i]) {
-				childDiv.style.background = "aqua";
-			} else {
-				childDiv.style.background = "pink";
-			}
-		}
-	}, 1000);
-}
-//determines right/wrong for each tile
+//determines logic for each tile
 function generateTiles(row, col, num, len) {
 	
 	//reset back to empty
@@ -92,13 +72,15 @@ function generateTiles(row, col, num, len) {
 	len = (row + 2) * (col + 2);
 
 	//number of correct tiles is based on length of grid
-	num = Math.floor(len / 3);
+    num = Math.floor(len / 3);
 	
 	//initial starts at 2
 	if(row == 0 && col == 0) {
 		num = 2;
 	}
-	
+    
+    count = num;
+    
 	//sets all to false
 	for(let i = 0; i < len; i++) {
 			tiles[i] = false;
@@ -107,7 +89,7 @@ function generateTiles(row, col, num, len) {
 	let choice = 0;
 	
 	//assigns trues to random indexes from index 0 to len, "num" number of times
-	while (num > 0) {
+	while (count > 0) {
 		//return a random index
 		choice = Math.floor(Math.random() * len);
 		
@@ -117,10 +99,9 @@ function generateTiles(row, col, num, len) {
 		}
 		else{
 			tiles[choice] = true;
-			num--;
+			count--;
 		}
 	}
-	
 	
 	newArr = [];
 	let c = col;
@@ -128,7 +109,7 @@ function generateTiles(row, col, num, len) {
 	//change tiles into a 2d array
 	while(tiles.length) 
 		newArr.push(tiles.splice(0, c + 2));
-	
+
 	return newArr;
 }
 
@@ -154,11 +135,12 @@ function removeGrid() {
 
 //sets colors to correct tiles
 function setCorrectTiles(row, col, newArr) {
-	
+	let num = 0;
 	for(let r = 0; r < row+2; r++) {
 		for(let c = 0; c < col+2; c++) {
 			//set correct tiles when true
 			if(newArr[r][c]) {
+                num++;
 				let change = document.getElementById(`Row${r}Col${c}`);
 				change.style.background = "aqua";
 				setTimeout(() => {
@@ -167,23 +149,34 @@ function setCorrectTiles(row, col, newArr) {
 				}, 1000);
 			}
 		}
-	}
+    }
+    return num;
 }
 
-//plays sound effect when refreshing grid
-function playAudio() {
+//plays sound effect when clicking on any tile
+function playClickAudio() {
 	let m = document.getElementById("sound");
 	m.play();
 	m.muted = false;
 }
 
+//plays sound effect when refreshing grid
+function playRefreshAudio() {
+	let m = document.getElementById("refresh");
+	m.play();
+	m.muted = false;
+}
+
 //stores all of the game logic
-function startGame(row, col, score) {
-	//update score
+function startGame(row, col, score, num) {
+
+	//update score and initially, moves
 	let s = document.getElementById('score');
 	s.innerHTML = `Score: ${score}`;
-	localStorage.setItem("score", score);
-	
+    localStorage.setItem("score", score);
+    let n = document.getElementById('moves');
+    n.innerHTML = `Moves: ${num}`;
+
 	//end game
 	if(score < 0) {
 		autoTerminate();
@@ -196,53 +189,14 @@ function startGame(row, col, score) {
 		generateGrid(row, col, degrees);
 
 		//holds array with true/false's
-		newArr = generateTiles(row, col, num, len);
+        newArr = generateTiles(row, col, num, len);
 
-		copyArr = newArr;
-		
 		//set functionality and color of correct tiles
-		setCorrectTiles(row, col, newArr);
-	}
-	
-	//repeat first round
-	if(clickedOnWrongTile && row == 0 && col == 0) {
-		//flashGrid();
-		playAudio();
-		//removing grid not working
-		removeGrid();
-		
-		generateGrid(row, col, degrees+90);
-		degrees += 90;
-		
-		//holds array with true/false's
-		newArr = generateTiles(row, col, num, len);
-		copyArr = newArr;
-		clickedOnWrongTile = false;	
-		//set functionality and color of correct tiles
-		setCorrectTiles(row, col, newArr);
-	}
-	
-	//go back a round, row or col needs to go back to the previous one
-	if(clickedOnWrongTile && (row > 0 || col > 0)) {
-		//flashGrid();
-		playAudio();
-		removeGrid();
+        num = setCorrectTiles(row, col, newArr);
+        copyArr = newArr;
+    }
 
-		row--;
-		col --;
-		
-		generateGrid(row, col, degrees+90);
-		degrees += 90;
-		
-		//holds array with true/false's
-		newArr = generateTiles(row, col, num, len);
-		copyArr = newArr;
-		clickedOnWrongTile = false;
-		//set functionality and color of correct tiles
-		setCorrectTiles(row, col, newArr);
-	}
-	
-	//count the number of correct tiles left unclicked
+    //count the number of correct tiles left unclicked
 	let truesRemaining = 0;
 	for(let r = 0; r < row+2; r++) {
 		for(let c = 0; c < col+2; c++) {
@@ -250,28 +204,97 @@ function startGame(row, col, score) {
 				truesRemaining++;
 			}
 		}
-	}
-	
-	//got everything correct, move on to next stage
-	if (truesRemaining == 0 && !clickedOnWrongTile) {
-	//	flashGrid();
-		playAudio();
-		
-		//remove grid elements
+    }
+   
+	//repeat first round
+	if(clickedOnWrongTile && row == 0 && col == 0 && num == 0) {
+		playRefreshAudio();
 		removeGrid();
 		
-		col++;
-		row++;
 		generateGrid(row, col, degrees+90);
 		degrees += 90;
 		
 		//holds array with true/false's
-		newArr = generateTiles(row, col, num, len);
-		copyArr = newArr;
-
+        newArr = generateTiles(row, col, num, len);
+      
+        tilesIncreaseBool = false;
+        clickedOnWrongTile = false;	
+        
 		//set functionality and color of correct tiles
-		setCorrectTiles(row, col, newArr);
+        num = setCorrectTiles(row, col, newArr);
+    
+        let n = document.getElementById('moves');
+        n.innerHTML = `Moves: ${num}`;
 	}
+	
+	//go back a round, row or col needs to go back to the previous one
+	if(clickedOnWrongTile && (row > 0 || col > 0) && num == 0) {
+		playRefreshAudio();
+		removeGrid();
+
+		//remove a row
+		if (row > col && row >= 1) {
+			row--;
+		
+		//remove a col
+		} else if (col > row && col >= 1) {
+			col --;
+		
+		//remove a row if they're equal and not 0
+		} else if (row == col && row >= 1 && col >= 1){
+			row--;
+		}
+		
+		generateGrid(row, col, degrees+90);
+		degrees += 90;
+		
+		//holds array with true/false's
+        newArr = generateTiles(row, col, num, len);
+
+        clickedOnWrongTile = false;
+        
+		//set functionality and color of correct tiles
+        num = setCorrectTiles(row, col, newArr);
+
+        let n = document.getElementById('moves');
+        n.innerHTML = `Moves: ${num}`;  
+	}	
+
+	//got everything correct, move on to next stage
+	if (truesRemaining == 0 && !clickedOnWrongTile && num == 0) {
+       // flashGrid(row, col, copyArr);
+		playRefreshAudio();
+        removeGrid();
+        
+        //increase cols
+        if (tilesIncreaseBool) {
+                
+            col++;
+            generateGrid(row, col, degrees+90);
+            degrees += 90;
+            
+            //holds array with true/false's
+            newArr = generateTiles(row, col, num, len);
+            tilesIncreaseBool = false;
+            
+        }
+        //increase row
+        else if (!tilesIncreaseBool) {
+            
+            row++;
+            generateGrid(row, col, degrees+90);
+            degrees += 90;
+            
+            //holds array with true/false's
+            newArr = generateTiles(row, col, num, len);
+      
+            tilesIncreaseBool = true;
+        }
+        //set functionality and color of correct tiles
+        num = setCorrectTiles(row, col, newArr);
+        let n = document.getElementById('moves');
+        n.innerHTML = `Moves: ${num}`;
+    }
 	
 	//assign onclick and color to corresponding tiles
 	for(let r = 0; r < row+2; r++) {
@@ -283,29 +306,24 @@ function startGame(row, col, score) {
 				change = document.getElementById(`Row${r}Col${c}`);	
 		
 				change.onclick = function(event) {
+                    playClickAudio();
 					change = document.getElementById(`Row${r}Col${c}`);
-
 					change.style.background = "aqua";
-					
-					//stop user from clicking on it repeatedly
+					//stop user from clicking on it repeatedly for points
 					newArr[r][c] = false;
-					startGame(row, col, score+1);
+					startGame(row, col, score+1, num-1);
 				}
 				
 			//set wrong tiles
 			} else {
-				wrongTiles = document.getElementById(`Row${r}Col${c}`);
-				wrongTiles.onclick = function(event) {
-					if(change.style.background == "pink") {
-						clickedOnWrongTile = true;
-						startGame(row, col, score-1);
-					}
+             
+                change = document.getElementById(`Row${r}Col${c}`);
+                change.onclick = function(event) {
+                    playClickAudio();
+                    clickedOnWrongTile = true;
+                    startGame(row, col, score-1, num-1);
 				}
 			}				
 		}		
-	}
+    }
 }
-/** to dos:
-- flash animation on whole grid on refresh
-- flash all tiles (correct and falses) after remainingTiles = 0
-*/
