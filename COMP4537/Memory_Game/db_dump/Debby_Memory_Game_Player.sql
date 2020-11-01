@@ -43,7 +43,7 @@ CREATE TABLE `Player` (
 
 LOCK TABLES `Player` WRITE;
 /*!40000 ALTER TABLE `Player` DISABLE KEYS */;
-INSERT INTO `Player` VALUES ('Brownie',49),('Estelle Bright',200),('Joshua Bright',100),('user',24),('Zhongli',300);
+INSERT INTO `Player` VALUES ('Bad user',2),('Brownie',49),('Debby chiu',26),('Estelle Bright',200),('Joshua Bright',100),('Zhongli',300);
 /*!40000 ALTER TABLE `Player` ENABLE KEYS */;
 UNLOCK TABLES;
 SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
@@ -57,4 +57,4 @@ SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-31 18:51:03
+-- Dump completed on 2020-10-31 19:32:57
