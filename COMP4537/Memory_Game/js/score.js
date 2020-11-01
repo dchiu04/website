@@ -21,9 +21,8 @@ function send(elem) {
   if (name == '') {
     alert('Please enter a name.');
 	return;
-  } else {
-    console.log(name);
   }
+
   //send to local storage
   localStorage.setItem("name", name);
   
