@@ -1,6 +1,6 @@
 const bodyParser = require('body-parser');
 const express = require('express');
-var mysql = require('mysql');
+const mysql = require('mysql');
 
 const app = express();
 
@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
-var con = mysql.createConnection({
+let con = mysql.createConnection({
     host: "jos-test.c4ztbtstxmqe.us-east-1.rds.amazonaws.com",
     user: "admin",
     password: "Jerome2020",
@@ -46,16 +46,14 @@ app.post('/submitScore', (req, res) => {
     let name = req.body.name;
    
    //Insert into database
-    var sql = "INSERT INTO Player (name, score) VALUES (" + con.escape(name)+ "," + con.escape(score) + ")";
+    let sql = "INSERT INTO Player (name, score) VALUES (" + con.escape(name)+ "," + con.escape(score) + ")";
     con.query(sql, function (err, result) {
         if (err) res.send("error");
 	else {
-		console.log("1 record inserted");
 		res.send("record inserted")
 	}   
     });
 });
 
-var port = process.env.PORT || 8000
+let port = process.env.PORT || 8000
 app.listen(port);
-console.log(`listening on port ${port}`);
