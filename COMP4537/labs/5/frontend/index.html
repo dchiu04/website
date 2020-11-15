@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="../../../../CSS/style.css">
+</head>
+
+<body>
+  <div class=container>
+    <h1>Minimal Dictionary RESTful API</h1>
+    <div class=flow-container>
+      <a href="search.html"><button id=searchdir>Search Word</button></a>
+      <div class="formcontainer">
+        <h3 class="form-header">Input Word</h3>
+        <div id="successMessage"></div>
+        <form>
+          <label for="word">Word</label>
+          <input type="text" id="word" name="word" placeholder="enter a word">
+          <label for="definition">Definition</label>
+          <input type="text" id="definition" name="definition" placeholder="enter definition">
+          <input type="submit" value="Submit" id="submit">
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+
+</html>

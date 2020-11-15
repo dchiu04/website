@@ -1,0 +1,90 @@
+
+
+.container {
+  margin: auto;
+  background-color: white;
+}
+
+.formcontainer {
+  margin: auto;
+  max-width: 500px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  text-align: left;
+  padding: 20px;
+}
+
+.form-header {
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+  padding-top: 0;
+  border-bottom: 1px solid #ccc;
+}
+
+h1 {
+  width: 500px;
+  margin: auto;
+  margin-bottom: 100px;
+  padding: 30px;
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  #submit, #searchbtn {
+    width: 100%;
+    background-color: #8A2BE2;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 4px;
+  }
+
+  #submit:hover, #searchbtn:hover {
+    background-color:  #7b25cc;
+  }
+  
+  #successMessage {
+    height: 25px;
+    padding-left: 75px;
+    color: blue;
+  }
+
+  .flow-container {
+    margin: auto;
+    max-width: 500px;
+    text-align: right;
+  }
+
+  #searchdir, #inputdir {
+    background-color: #9e1739;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    padding: 3px;
+    width: 130px;
+  }
+
+  #searchdir:hover, #inputdir:hover {
+    background-color:#800926;
+  }
+
+  #result {
+    background-color: white;
+    width: 100%;
+    border: 1px solid #ccc;
+    min-height: 50px;
+    margin-top: 10px;
+  }
+  
+  .item {
+    padding: 10px;
+  }
